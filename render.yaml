@@ -29,6 +29,10 @@ services:
     rootDirectory: frontend
     buildCommand: npm install && npm run build
     staticPublishPath: build
+    envVars:
+      - key: NODE_OPTIONS
+        value: --openssl-legacy-provider
+
 
 databases:
   - name: whaticket-db
