@@ -1,0 +1,46 @@
+services:
+  # Backend
+  - type: web
+    name: whaticket-backend
+    env: node
+    plan: starter
+    region: oregon
+    buildCommand: cd backend && npm install && npm run build
+    startCommand: cd backend && npx sequelize db:migrate && npm start
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: BACKEND_URL
+        fromContext: [SERVICE_URL]
+      - key: FRONTEND_URL
+        fromContext: [SERVICE_URL] # This will be adjusted once frontend is up
+      - key: DB_DIALECT
+        value: postgres
+      - key: DATABASE_URL
+        fromDatabase:
+          name: whaticket-db
+          property: connectionString
+      - key: JWT_SECRET
+        generateValue: true
+      - key: JWT_REFRESH_SECRET
+        generateValue: true
+
+  # Frontend
+  - type: web
+    name: whaticket-frontend
+    env: static
+    plan: free
+    region: oregon
+    buildCommand: cd frontend && npm install && npm run build
+    publishPath: frontend/build
+    envVars:
+      - key: REACT_APP_BACKEND_URL
+        fromService:
+          type: web
+          name: whaticket-backend
+          property: host
+
+databases:
+  - name: whaticket-db
+    plan: free
+    region: oregon
