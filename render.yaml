@@ -5,8 +5,9 @@ services:
     env: node
     plan: free
     region: oregon
-    buildCommand: cd backend && npm install && npm run build
-    startCommand: cd backend && npx sequelize db:migrate && npm start
+    rootDirectory: backend
+    buildCommand: npm install && npm run build
+    startCommand: npx sequelize db:migrate && npm start
     envVars:
       - key: NODE_ENV
         value: production
@@ -25,8 +26,9 @@ services:
   - type: web
     name: whaticket-frontend
     runtime: static
-    buildCommand: cd frontend && npm install && npm run build
-    staticPublishPath: frontend/build
+    rootDirectory: frontend
+    buildCommand: npm install && npm run build
+    staticPublishPath: build
 
 databases:
   - name: whaticket-db
