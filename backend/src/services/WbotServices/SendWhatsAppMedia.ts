@@ -5,7 +5,7 @@ import GetTicketWbot from "../../helpers/GetTicketWbot";
 import Ticket from "../../models/Ticket";
 
 interface Request {
-  media: Express.Multer.File;
+  media: any;
   ticket: Ticket;
 }
 
