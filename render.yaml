@@ -3,17 +3,13 @@ services:
   - type: web
     name: whaticket-backend
     env: node
-    plan: starter
+    plan: free
     region: oregon
     buildCommand: cd backend && npm install && npm run build
     startCommand: cd backend && npx sequelize db:migrate && npm start
     envVars:
       - key: NODE_ENV
         value: production
-      - key: BACKEND_URL
-        fromContext: [SERVICE_URL]
-      - key: FRONTEND_URL
-        fromContext: [SERVICE_URL] # This will be adjusted once frontend is up
       - key: DB_DIALECT
         value: postgres
       - key: DATABASE_URL
