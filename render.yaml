@@ -22,12 +22,13 @@ services:
         generateValue: true
 
   # Frontend
-  - type: static
+  - type: web
     name: whaticket-frontend
+    runtime: static
     plan: free
     region: oregon
     buildCommand: cd frontend && npm install && npm run build
-    publishPath: frontend/build
+    staticPublishPath: frontend/build
     envVars:
       - key: REACT_APP_BACKEND_URL
         fromService:
