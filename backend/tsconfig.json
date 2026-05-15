@@ -9,8 +9,7 @@
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true,
     "skipLibCheck": true,
-    "forceConsistentCasingInFileNames": true,
-    "types": ["node", "express", "multer"]
+    "forceConsistentCasingInFileNames": true
   },
   "exclude": [
     "node_modules",
