@@ -22,9 +22,8 @@ services:
         generateValue: true
 
   # Frontend
-  - type: web
+  - type: static
     name: whaticket-frontend
-    env: static
     plan: free
     region: oregon
     buildCommand: cd frontend && npm install && npm run build
