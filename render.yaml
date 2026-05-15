@@ -26,14 +26,14 @@ services:
     name: whaticket-frontend
     runtime: static
     plan: free
-    region: oregon
     buildCommand: cd frontend && npm install && npm run build
     staticPublishPath: frontend/build
     envVars:
       - key: REACT_APP_BACKEND_URL
         fromService:
+          type: web
           name: whaticket-backend
-          property: url
+          property: host
 
 databases:
   - name: whaticket-db
